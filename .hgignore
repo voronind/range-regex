@@ -1,0 +1,9 @@
+syntax: glob
+
+*.pyc
+*.pyo
+__pycache__
+
+.git
+.hg
+.idea
