@@ -1,4 +1,3 @@
-=========================
 range-regex
 =========================
 
@@ -7,10 +6,9 @@ Another like modules generates incorrect or excessive patterns.
 
 Installation
 =========================
+::
 
-The recommended way to install range-regex is with `pip <http://pypi.python.org/pypi/pip>`_::
-
-    pip install range-regex
+    git clone git://github.com/dimka665/range-regex.git
 
 
 Usage
