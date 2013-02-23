@@ -1,7 +1,6 @@
-range-regex
+The nicest numeric range regular expression generator
 =========================
 
-The nicest numeric range regular expression generator.
 Another like modules generates incorrect or excessive patterns.
 
 Installation
