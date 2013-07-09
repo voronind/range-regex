@@ -7,7 +7,7 @@ setup(
     version='1.0',
     description='Python numeric range regular expression generator',
     long_description=long_description,
-    url='http://github.com/dimka665/range-ragex',
+    url='http://github.com/dimka665/range-regex',
     author='Dmitry Voronin',
     author_email='dimka665@gmail.com',
     license='Python Software Foundation License',
