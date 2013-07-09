@@ -4,7 +4,7 @@ syntax: glob
 *.pyo
 __pycache__
 
-.git
-.hg
+dist/*
+
 .idea
 MANIFEST

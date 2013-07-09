@@ -4,7 +4,7 @@ long_description = open('README.rst').read()
 
 setup(
     name='range-regex',
-    version='1.0',
+    version='1.0.1',
     description='Python numeric range regular expression generator',
     long_description=long_description,
     url='http://github.com/dimka665/range-regex',
