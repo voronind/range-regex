@@ -5,6 +5,7 @@ syntax: glob
 __pycache__
 
 dist/*
+build/*
 
 .idea
 MANIFEST
