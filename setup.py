@@ -1,10 +1,12 @@
+import os
 from distutils.core import setup
 
-long_description = open('README.rst').read()
+root = os.path.dirname(os.path.realpath(__file__))
+long_description = open(os.path.join(root, 'README.rst')).read()
 
 setup(
     name='range-regex',
-    version='1.0.1',
+    version='1.0.2',
     description='Python numeric range regular expression generator',
     long_description=long_description,
     url='http://github.com/dimka665/range-regex',
@@ -20,6 +22,5 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Environment :: Web Environment',
     ],
 )
