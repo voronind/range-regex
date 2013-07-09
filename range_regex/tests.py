@@ -4,7 +4,7 @@ from range_regex import bounded_regex_for_range, regex_for_range
 
 class RegexForRangeTest(unittest.TestCase):
     def _verify_range(self, regex, min_, max_, from_min_, to_max_):
-        for nr in xrange(from_min_, to_max_ + 1):
+        for nr in range(from_min_, to_max_ + 1):
             if min_ <= nr <= max_:
                 self.assertRegexpMatches(str(nr), regex)
             else:
@@ -22,6 +22,11 @@ class RegexForRangeTest(unittest.TestCase):
     def test_equal_2(self):
         regex = bounded_regex_for_range(65443, 65443)
         self._verify_range(regex, 65443, 65443, 65000, 66000)
+
+    def test_equal_3(self):
+        regex = bounded_regex_for_range(192, 100020000300000)
+        self._verify_range(regex, 192, 1000, 0, 1000)
+        self._verify_range(regex, 100019999300000, 100020000300000, 100019999300000, 100020000400000)
 
     def test_repeated_digit(self):
         regex = bounded_regex_for_range(10331, 20381)

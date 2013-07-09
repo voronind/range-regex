@@ -9,14 +9,15 @@
 # 300-339: 3[0-3]\d
 # 340-345: 34[0-5]
 
+
 def bounded_regex_for_range(min_, max_):
     return r'\b({})\b'.format(regex_for_range(min_, max_))
 
 
 def regex_for_range(min_, max_):
     """
-    >>> regex_for_range(12, 345)
-    '1[2-9]|[2-9]\\\\d|[1-2]\\\\d{2}|3[0-3]\\\\d|34[0-5]'
+    > regex_for_range(12, 345)
+    '1[2-9]|[2-9]\d|[1-2]\d{2}|3[0-3]\d|34[0-5]'
     """
     subpatterns = []
 
@@ -29,7 +30,7 @@ def regex_for_range(min_, max_):
 
 
 def split_to_ranges(min_, max_):
-    stops = set([max_])
+    stops = {max_}
 
     nines_count = 1
     stop = fill_by_nines(min_, nines_count)
