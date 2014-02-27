@@ -14,6 +14,8 @@ class RegexForRangeTest(unittest.TestCase):
         self.assertEqual(regex_for_range(1, 1), '1')
         self.assertEqual(regex_for_range(65666, 65667), '6566[6-7]')
         self.assertEqual(regex_for_range(12, 3456), r'1[2-9]|[2-9]\d|[1-9]\d{2}|[1-2]\d{3}|3[0-3]\d{2}|34[0-4]\d|345[0-6]')
+        self.assertEqual(regex_for_range(1, 19), r'[1-9]|1\d')
+        self.assertEqual(regex_for_range(1, 99), r'[1-9]|[1-9]\d')
 
     def test_equal(self):
         regex = bounded_regex_for_range(1, 1)

@@ -41,12 +41,12 @@ def split_to_ranges(min_, max_):
         stop = fill_by_nines(min_, nines_count)
 
     zeros_count = 1
-    stop = fill_by_zeros(max_, zeros_count) - 1
-    while min_ < stop < max_:
+    stop = fill_by_zeros(max_ + 1, zeros_count) - 1
+    while min_ < stop <= max_:
         stops.add(stop)
 
         zeros_count += 1
-        stop = fill_by_zeros(max_, zeros_count) - 1
+        stop = fill_by_zeros(max_ + 1, zeros_count) - 1
 
     stops = list(stops)
     stops.sort()
