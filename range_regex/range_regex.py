@@ -1,3 +1,5 @@
+import math
+
 # coding=utf8
 
 #  Split range to ranges that has its unique pattern.
@@ -19,6 +21,30 @@ def regex_for_range(min_, max_):
     > regex_for_range(12, 345)
     '1[2-9]|[2-9]\d|[1-2]\d{2}|3[0-3]\d|34[0-5]'
     """
+    positive_subpatterns = []
+    negative_subpatterns = []
+
+    if min_ < 0:
+        min__ = 1
+        if max_ < 0:
+            min__ = abs(max_)
+        max__ = abs(min_)
+
+        negative_subpatterns = split_to_patterns(min__, max__)
+        min_ = 0
+
+    if max_ >= 0:
+        positive_subpatterns = split_to_patterns(min_, max_)    
+
+    negative_only_subpatterns = ['-' + val for val in negative_subpatterns if val not in positive_subpatterns]
+    positive_only_subpatterns = [val for val in positive_subpatterns if val not in negative_subpatterns]
+    intersected_subpatterns = ['-?' + val for val in negative_subpatterns if val in positive_subpatterns]
+
+    subpatterns = negative_only_subpatterns + intersected_subpatterns + positive_only_subpatterns
+    return '|'.join(subpatterns)
+
+
+def split_to_patterns(min_, max_):
     subpatterns = []
 
     start = min_
@@ -26,7 +52,7 @@ def regex_for_range(min_, max_):
         subpatterns.append(range_to_pattern(start, stop))
         start = stop + 1
 
-    return '|'.join(subpatterns)
+    return subpatterns
 
 
 def split_to_ranges(min_, max_):
