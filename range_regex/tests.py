@@ -12,9 +12,28 @@ class RegexForRangeTest(unittest.TestCase):
 
     def test_quality(self):
         self.assertEqual(regex_for_range(1, 1), '1')
+        self.assertEqual(regex_for_range(0, 1), '[0-1]')
+        self.assertEqual(regex_for_range(-1, -1), '-1')
+        self.assertEqual(regex_for_range(-1, 0), '-1|0')
+        self.assertEqual(regex_for_range(-1, 1), '-1|[0-1]')
+        self.assertEqual(regex_for_range(-4, -2), '-[2-4]')
+        self.assertEqual(regex_for_range(-3, 1), '-[1-3]|[0-1]')
+        self.assertEqual(regex_for_range(-2, 0), '-[1-2]|0')
+        self.assertEqual(regex_for_range(0, 2), '[0-2]')
+        self.assertEqual(regex_for_range(-1, 3), '-1|[0-3]')
         self.assertEqual(regex_for_range(65666, 65667), '6566[6-7]')
         self.assertEqual(regex_for_range(12, 3456), r'1[2-9]|[2-9]\d|[1-9]\d{2}|[1-2]\d{3}|3[0-3]\d{2}|34[0-4]\d|345[0-6]')
+        self.assertEqual(regex_for_range(1, 19), r'[1-9]|1\d')
+        self.assertEqual(regex_for_range(1, 99), r'[1-9]|[1-9]\d')
 
+    def test_optimization(self):
+        self.assertEqual(regex_for_range(-9, 9), r'-[1-9]|\d')
+        self.assertEqual(regex_for_range(-19, 19), r'-[1-9]|-?1\d|\d')
+        self.assertEqual(regex_for_range(-29, 29), r'-[1-9]|-?[1-2]\d|\d')
+        self.assertEqual(regex_for_range(-99, 99), r'-[1-9]|-?[1-9]\d|\d')
+        self.assertEqual(regex_for_range(-999, 999), r'-[1-9]|-?[1-9]\d|-?[1-9]\d{2}|\d')
+        self.assertEqual(regex_for_range(-9999, 9999), r'-[1-9]|-?[1-9]\d|-?[1-9]\d{2}|-?[1-9]\d{3}|\d')
+        
     def test_equal(self):
         regex = bounded_regex_for_range(1, 1)
         self._verify_range(regex, 1, 1, 0, 100)
